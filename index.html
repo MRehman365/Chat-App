@@ -1,215 +1,33 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <title>Document</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #EBE3D5;
-      width: 100%;
-      margin: 0;
-      padding: 0;
-      display: flex;
-    }
-    marquee{
-      height: 40px;
-      background-color: #b0a695;
-      color: white;
-    }
-    .chat-container {
-      position: relative;
-      height: 100vh;
-      width: 100%;
-      margin: 0;
-      padding: 0;
-      overflow: auto;
-      background-color: #EBE3D5;
-      border-radius: 0px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      display: flex;
-      flex-direction: column;
-    }
-    .sidebar {
-      width: 25%;
-      background-color: #B0A695;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.3s ease;
-      transform: translateX(-100%);
-    }
-    .sidebar.hidden {
-      transform: translateX(0);
-    }
-    .sidebar input, .sidebar button {
-      margin-bottom: 10px;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-    .user-list {
-      list-style-type: none;
-      padding: 0;
-    }
-    .user-list li {
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      margin-bottom: 5px;
-      cursor: pointer;
-    }
-    #messages {
-      list-style-type: none;
-      padding: 10px;
-      margin: 0;
-      flex-grow: 1;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-    }
-    #messages li {
-      padding: 10px;
-      margin-bottom: 10px;
-      border-radius: 10px;
-    }
-    #messages li.left {
-      background-color: gainsboro;
-      align-self: flex-start;
-    }
-    #messages li.right {
-      background-color: #34b7f1;
-      color: #fff;
-      align-self: flex-end;
-      float: right;
-    }
-    #messages li.notification {
-      text-align: center;
-      color: #888;
-      font-style: italic;
-      background-color: transparent;
-      align-self: center;
-    }
-    #form {
-      display: flex;
-      padding: 10px;
-      background-color: #B0A695;
-      border-top: 1px solid #ddd;
-    }
-    #input {
-      flex: 1;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      margin-right: 10px;
-    }
-    button {
-      padding: 10px 20px;
-      background-color: #776f65;
-      color: #fff;
-      border: none;
-      border-radius: 2px;
-      cursor: pointer;
-    }
-    .btn {
-      padding: 10px 20px;
-      background-color: #776f65;
-      color: #fff;
-      border: none;
-      border-radius: 2px;
-      cursor: pointer;
-      z-index: 99999;
-      display: none;
-    }
-    button:hover {
-      background-color: #776B5D;
-    }
-    .notification {
-      text-align: center;
-      color: #888;
-      font-style: italic;
-    }
-    .members {
-      background-color: #776f65;
-      padding: 10px;
-      border-radius: 3px;
-      border: 1px solid white;
-      text-align: center;
-      color: whitesmoke;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-    }
-    .logo {
-      margin-bottom: 20px;
-      height: 40px;
-      width: 160px;
-    }
-    .online {
-      color: rgb(0, 224, 0);
-      font-size: 10px;
-    }
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style1.css">
 
-    @media (max-width: 600px) {
-      .chat-container {
-        border-radius: 0;
-        box-shadow: none;
-        width: 100%;
-      }
-      .sidebar {
-        /* margin: 0; */
-        padding: 0;
-        width: 100%;
-        overflow-x: auto;
-        transform: translateX(0%);
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100%;
-        z-index: 1000;
-      }
-      .sidebar.hidden {
-        transform: translateX(-100%);
-      }
-      #messages {
-        padding: 10px;
-      }
-      #messages li {
-        padding: 10px;
-        border-radius: 5px;
-      }
-      #form {
-        padding: 5px;
-      }
-      #input {
-        padding: 10px;
-        border-radius: 2px;
-        margin-right: 5px;
-      }
-      button {
-        padding: 5px 10px;
-        border-radius: 2px;
-      }
-      .btn {
-      padding: 10px 20px;
-      background-color: #776f65;
-      color: #fff;
-      border: none;
-      border-radius: 2px;
-      cursor: pointer;
-      z-index: 99999;
-      display: block;
-    }
-    }
+  <style>
+    
   </style>
 </head>
+
 <body>
   <div class="sidebar hidden" id="sidebar">
-    <img class="logo" src="/logo.png" alt="Logo">
+    <div className='w-full flex justify-center'>
+      <div class="ui-abstergo">
+        <div class="abstergo-loader">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div class="ui-text">
+        MIND LOOP
+        </div>
+      </div>
+          </div>
     <input type="text" id="username" placeholder="Enter your name...">
     <button id="loginButton">Login</button>
     <div class="members"><i class="fas fa-circle online"></i>Online Members</div>
@@ -217,7 +35,9 @@
     </ul>
   </div>
   <div class="chat-container">
-    <marquee behavior="" direction="left"><p>Do Not Share Your Personal Data Here</p></marquee>
+    <marquee behavior="" direction="left">
+      <p>Do Not Share Your Personal Data Here!</p>
+    </marquee>
     <ul id="messages"></ul>
     <form id="form" action="">
       <input id="input" autocomplete="off" placeholder="Type a message..." />
@@ -306,4 +126,5 @@
     sidebarToggle.addEventListener('click', toggleSidebar);
   </script>
 </body>
+
 </html>

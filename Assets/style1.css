@@ -1,0 +1,243 @@
+*{
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+
+  marquee {
+    height: 40px;
+    background-image: url("Asset 1.png") !important;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: white;
+    
+  }
+
+  .chat-container {
+    /* position: relative; */
+    height: 100vh;
+    width: calc(100% - 25%);
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    background-color: #343A4A;
+    border-radius: 0px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    
+  }
+
+  .sidebar {
+    width: 25%;
+    background-image: url("Asset 1.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 20px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+    transform: translateX(-100%);
+  }
+
+  .sidebar.hidden {
+    transform: translateX(0);
+  }
+
+  .sidebar input,
+  .sidebar button {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  .user-list {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .user-list li {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+  }
+
+  #messages {
+    list-style-type: none;
+    padding: 10px;
+    margin: 0;
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #messages li {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+  }
+
+  #messages li.left {
+    background-color: gainsboro;
+    align-self: flex-start;
+  }
+
+  #messages li.right {
+    background-color: #34b7f1;
+    color: #fff;
+    align-self: flex-end;
+    float: right;
+  }
+
+  #messages li.notification {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+    background-color: transparent;
+    align-self: center;
+  }
+
+  #form {
+    display: flex;
+    padding: 10px;
+    background-image: url("Asset 1.png") !important;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    /* border-top: 1px solid #ddd; */
+  }
+
+  #input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: #776f65;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    background-color: #776f65;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    z-index: 99999;
+    display: none;
+  }
+
+  button:hover {
+    background-color: #776B5D;
+  }
+
+  .notification {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+  }
+
+  .members {
+    background-color: #776f65;
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid white;
+    text-align: center;
+    color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .logo {
+    margin-bottom: 20px;
+    height: 40px;
+    width: 160px;
+  }
+
+  .online {
+    color: rgb(0, 224, 0);
+    font-size: 10px;
+  }
+
+  @media (max-width: 600px) {
+    .chat-container {
+      border-radius: 0;
+      box-shadow: none;
+      width: 100%;
+    }
+
+    .sidebar {
+      /* margin: 0; */
+      padding: 0;
+      width: 100%;
+      overflow-x: auto;
+      transform: translateX(0%);
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      z-index: 1000;
+    }
+
+    .sidebar.hidden {
+      transform: translateX(-100%);
+    }
+
+    #messages {
+      padding: 10px;
+    }
+
+    #messages li {
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    #form {
+      padding: 5px;
+    }
+
+    #input {
+      padding: 10px;
+      border-radius: 2px;
+      margin-right: 5px;
+    }
+
+    button {
+      padding: 5px 10px;
+      border-radius: 2px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      background-color: #776f65;
+      color: #fff;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      z-index: 99999;
+      display: block;
+    }
+  }
