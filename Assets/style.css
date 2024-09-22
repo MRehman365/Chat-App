@@ -3,7 +3,21 @@ body {
     background-color: #f0f0f0;
     overflow: hidden;
   }
+  .username-display {
+    display: none;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 25px;
+    font-weight: 700;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
 
+  .show-username {
+    display: block;
+    opacity: 1;
+  }
   
   .chat-container {
     width: 75%;
@@ -94,7 +108,9 @@ body {
   }
   
   .ui-abstergo .ui-text {
-    color: var(--primary);
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
     text-shadow: 0 0 var(--text-shadow-blur) var(--secondary);
     font-family: Menlo, sans-serif;
     display: -webkit-box;
@@ -106,6 +122,7 @@ body {
     -webkit-column-gap: 3px;
     -moz-column-gap: 3px;
     column-gap: 3px;
+    margin-bottom: 20px;
   }
   
   .ui-abstergo .ui-dot {

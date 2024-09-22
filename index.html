@@ -2,7 +2,12 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8"><script src="
+https://cdn.jsdelivr.net/npm/heroicons-css@0.1.1/heroicons.min.js
+"></script>
+<link href="
+https://cdn.jsdelivr.net/npm/heroicons-css@0.1.1/heroicons.min.css
+" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <title>Document</title>
@@ -23,13 +28,16 @@
           <div></div>
           <div></div>
         </div>
-        <div class="ui-text">
+        <div class="ui-text  mb-2">
         MIND LOOP
         </div>
       </div>
           </div>
-    <input type="text" id="username" placeholder="Enter your name...">
-    <button id="loginButton">Login</button>
+          <input type="text" id="username" placeholder="Enter your name...">
+          <button id="loginButton">Login</button>
+      
+          <!-- Username display div -->
+          <div id="usernameDisplay" class="username-display"></div>
     <div class="members"><i class="fas fa-circle online"></i>Online Members</div>
     <ul id="userList" class="user-list">
     </ul>
@@ -60,13 +68,20 @@
     let username = '';
 
     loginButton.addEventListener('click', () => {
-      username = usernameInput.value.trim();
-      if (username) {
-        socket.emit('join', username);
-        usernameInput.disabled = true;
-        loginButton.disabled = true;
-      }
-    });
+  username = usernameInput.value.trim();
+  if (username) {
+    socket.emit('join', username);
+
+    // Hide input and button
+    usernameInput.style.display = 'none';
+    loginButton.style.display = 'none';
+
+    // Show the username with a fade-in effect
+    const usernameDisplay = document.getElementById('usernameDisplay');
+    usernameDisplay.textContent = ` ${username}`;
+    usernameDisplay.classList.add('show-username');
+  }
+});
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -93,16 +108,39 @@
     });
 
     socket.on('user list', function (users) {
-      userList.innerHTML = '';
-      users.forEach(user => {
-        const userItem = document.createElement('li');
-        userItem.textContent = user;
-        userItem.addEventListener('click', () => {
-          startPrivateChat(user);
-        });
-        userList.appendChild(userItem);
-      });
+  userList.innerHTML = '';
+  users.forEach(user => {
+    const userItem = document.createElement('li');
+
+    // Create an SVG element for the user icon
+    const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    icon.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    icon.setAttribute('fill', 'none');
+    icon.setAttribute('viewBox', '0 0 24 24');
+    icon.setAttribute('stroke-width', '1.5');
+    icon.setAttribute('stroke', 'currentColor');
+    icon.setAttribute('class', 'size-6');
+    icon.innerHTML = `
+      <path stroke-linecap="round" stroke-linejoin="round" 
+        d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />`;
+
+    // Append the SVG icon to the user item
+    userItem.appendChild(icon);
+
+    // Add the user name next to the icon
+    const userName = document.createTextNode(' ' + user);
+    userItem.appendChild(userName);
+
+    // Add event listener for private chat
+    userItem.addEventListener('click', () => {
+      startPrivateChat(user);
     });
+
+    // Append the user item to the list
+    userList.appendChild(userItem);
+  });
+});
+
 
     function startPrivateChat(user) {
       form.onsubmit = function (e) {

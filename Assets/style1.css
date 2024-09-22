@@ -60,18 +60,33 @@ body {
     border: 1px solid #ddd;
     border-radius: 5px;
   }
-
+  ::-webkit-scrollbar{
+    width: 0px;
+  }
   .user-list {
+    overflow-y: scroll;
+    height: 50vh;
     list-style-type: none;
     padding: 0;
   }
 
   .user-list li {
+    display: flex;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    align-items: center;
     padding: 10px;
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
+    color: white;
     border-radius: 5px;
     margin-bottom: 5px;
     cursor: pointer;
+    background-color: #343a4a;
+  }
+  .user-list li svg{
+    height: 25px;
+    color: #fff;
   }
 
   #messages {
@@ -130,7 +145,7 @@ body {
 
   button {
     padding: 10px 20px;
-    background-color: #776f65;
+    background-color: #343A4A;
     color: #fff;
     border: none;
     border-radius: 2px;
@@ -139,7 +154,7 @@ body {
 
   .btn {
     padding: 10px 20px;
-    background-color: #776f65;
+    background-color: #343A4A;
     color: #fff;
     border: none;
     border-radius: 2px;
@@ -149,7 +164,7 @@ body {
   }
 
   button:hover {
-    background-color: #776B5D;
+    background-color: #343A4A;
   }
 
   .notification {
@@ -159,7 +174,7 @@ body {
   }
 
   .members {
-    background-color: #776f65;
+    background-color: #343A4A;
     padding: 10px;
     border-radius: 3px;
     border: 1px solid white;
